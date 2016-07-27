@@ -20,10 +20,10 @@ So now we have a cracker, a dictionary, and a PDF to crack. Putting it all toget
 
 Running that gets us the password `elephant`
 
-![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/PasswordPDF/clip%20(2016-07-19%20at%2007.23.55%29.jpg)
+![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/PasswordPDF/clip%20%282016-07-19%20at%2007.23.55%29.jpg)
 
 Opening the PDF and entering that password gets us a document that says the password is censored. Oh no....
 
 Selecting all (CTRL+A) shows us that there is actually some hidden text underneath the censoring box. That hidden text is the flag: `ABCTF{Damn_h4x0rz_always_bypassing_my_PDFs}`
 
-![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/PasswordPDF/clip%20(2016-07-20%20at%2006.17.36%29.png)
+![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/PasswordPDF/clip%20%282016-07-20%20at%2006.17.36%29.png)
