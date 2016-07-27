@@ -14,18 +14,18 @@ We can then extract more information about the SQL database. Entering `1 union a
 
 To enumerate table names we can use `1 union all select 1,table_name,3,4 from information_schema.tables`. Doing so gets us an interesting table name:
 
-![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/ss%20(2016-07-22%20at%2011.09.35\).png)
+![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/ss%20%282016-07-22%20at%2011.09.35%29.png)
 
 We perform a similar enumeration for column names with `5 union all select 1,column_name,3,4 from information_schema.columns`
 
 An interesting column name appears at the end:
 
-![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/ss%20(2016-07-22%20at%2011.10.02\).png)
+![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/ss%20%282016-07-22%20at%2011.10.02%29.png)
 
 ##### Getting the flag. 
 
 It is a reasonable assumption that the flag is in `f0und_m3` and `w0w_y0u_f0und_m3`. 
 
 We can extract information from that table/column combo with `1 union all select 1,f0und_m3,3,4 from w0w_y0u_f0und_m3`
-![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/clip%20(2016-07-22%20at%2011.10.45\).png)
+![](https://raw.githubusercontent.com/jonathanluck/ctfs/master/abctf2016/Reunion/clip%20%282016-07-22%20at%2011.10.45%29.png)
 With that we obtain the flag: `abctf{uni0n_1s_4_gr34t_c0mm4nd}`
