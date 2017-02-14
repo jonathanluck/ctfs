@@ -1,0 +1,9 @@
+v1.0:
+- Pin database with hashed pins
+
+v1.1:
+- Added AES support for secret
+
+v1.2:
+- Derive key from pin
+[To-do: switch to the new database]

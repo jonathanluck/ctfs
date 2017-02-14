@@ -2,9 +2,7 @@ from PIL import Image
 import binascii
 
 def c(n):
-    if(n < 16):
-        return ("0" + hex(n)[2:])
-    return (hex(n)[2:])
+    return ((hex(n)[2:]).zfill(2))
 
 def hexpix(p):
     out = ""
