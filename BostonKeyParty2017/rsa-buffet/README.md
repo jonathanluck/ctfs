@@ -2,14 +2,14 @@
 
 ###Crypto
 
-We are given a problem with 5 ciphertexts, 10 public keys and a couple of .py files for the encryption/message sharing format. The problem text says essentially: with what you are given, crack at least 3 of the ciphertexts, then put them back together to get a flag.
+We are given a problem with 5 ciphertexts, 10 public keys and a couple of .py files for the [encryption](https://github.com/jonathanluck/ctfs/blob/master/BostonKeyParty2017/rsa-buffet/encrypt.py) and [message sharing](https://github.com/jonathanluck/ctfs/blob/master/BostonKeyParty2017/rsa-buffet/generate-plaintexts.py) format. The problem text says essentially: with what you are given, crack at least 3 of the ciphertexts, then put them back together to get a flag.
 
 I solved this problem by exploiting 3 different weak implementations:
-* Shared primes (pems 0 and 6)
-* Fermat factorization (pem 1)
-* Wiener's attack (pem 3)
+* Shared primes (Keys 0 and 6)
+* Fermat factorization (Key 1)
+* Wiener's attack (Key 3)
 
-Python libraries I had to install for my solution code:
+Python libraries I had to install for [my solution code](https://github.com/jonathanluck/ctfs/blob/master/BostonKeyParty2017/rsa-buffet/rsa.py):
 * [RSAExploits](https://github.com/vik001ind/RSAExploits) (by far the most useful to have for future CTFs)
 * [PyCrypto](https://pypi.python.org/pypi/pycrypto)
 * [SecretSharing](https://github.com/blockstack/secret-sharing)
@@ -69,6 +69,12 @@ for c in cts:
         plaintexts.append(temp)
         break
 ```
+
+Looking at the decrypted plaintext, we get something like this:
+```
+Congratulations, you decrypted a ciphertext!  One down, two to go :)\n3-17e568ddc3ed3e6fe330ca47a2b27a2707edd0e0839df59fe9114fe6c08c6fc1ac1c3c8d9ab3cf7860dac103dff464d4c215e197b54f0cb46993912c3d0220a3eb1b80adf33ee2cc59b0372c\n3-b69efb4f9c5205175a4c9afb9d3c7bef728d9fb6c9cc1241411b31d4bd18744660391a330cefa8a86af8d2b80c881cfa\n3-572e70c5acfbe8b4c2cbd47217477d217da88c256ff2586af6a18391972c258bbea6143e7cd2ff6d39393efeb64d51d9318a2c337e50e2d764a42173bc3a1d5c7c8f24b64043daf5d2a8e9f4\n3-e9e6850880eb0a44d36fe9f2e5a458c6da3977b7fcd285afa27e9bfc116b1408570991504116b81864b03a7060bfd5d3fb6e007bb346f276d749befd545d1489c4\n
+```
+For now it is unreadable, but later we will combine all 3 of the plaintexts at the end to get the flag.
 
 #### Fermat factorization:
 This was also based on a guess. The theory behind a Fermat factorization attack is that the two primes are relatively close to each other, making N very close to p<sup>2</sup> or q<sup>2</sup>. Based on this, searching around sqrt(N) should yeild one of the primes, and therefore allowing us to compute the private key.
@@ -139,3 +145,5 @@ for i in zip(pt1, pt2, pt3):
 We take off the congratulations message from each one. Then we break them apart line by line. After that, we zip the lists together, and iterate through the zippedl lists.
 
 In the end, we get the flag: `FLAG{ndQzjRpnSP60NgWET6jx}`
+
+Solution code combining all 3 attacks and secret recovery (written for python 2, but can be easily changed to python 3 w/ minor modifications to handle integer division): [rsa.py](https://github.com/jonathanluck/ctfs/blob/master/BostonKeyParty2017/rsa-buffet/rsa.py)
