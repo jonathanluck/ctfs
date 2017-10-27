@@ -28,7 +28,7 @@ combined = Image.new("RGBA", one.size)
 for x in range(one.size[0]):
     for y in range(one.size[1]):
         if(one.getpixel((x,y)) == (255,)*4 or two.getpixel((x,y)) == (255,)*4):
-            combined.putpixel((x,y), (0,)*4)
+            combined.putpixel((x,y), (0,0,0,255))
         else:
             combined.putpixel((x,y), (255,)*4)
             
